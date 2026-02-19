@@ -1,0 +1,77 @@
+type UserPreferences = 
+ record {
+   customAppName: opt text;
+   customLogoPath: opt text;
+   dayMode: bool;
+ };
+type Time = int;
+type MetricType = 
+ variant {
+   canisterCount;
+   canisterStorage;
+   cycleBurnRate;
+   icpCyclesConversion;
+   nodeMachineCount;
+   nodeProviderCount;
+   subnetCount;
+   transactionsPerSecond;
+ };
+type MetricDataPoint = 
+ record {
+   timestamp: Time;
+   value: float64;
+ };
+type FileReference = 
+ record {
+   hash: text;
+   path: text;
+ };
+type ConversionRate = 
+ record {
+   date: text;
+   rate: float64;
+ };
+type ChartTimeframe = 
+ variant {
+   all;
+   oneDay;
+   oneMonth;
+   oneYear;
+   sevenDays;
+   sixMonths;
+   threeMonths;
+ };
+type ChartDataPoint = 
+ record {
+   close: float64;
+   high: float64;
+   low: float64;
+   open: float64;
+   timestamp: Time;
+   volume: float64;
+ };
+service : {
+  clearChartData: (timeframe: ChartTimeframe) -> ();
+  clearConversionRate: (date: text) -> ();
+  clearMetricData: (metricType: MetricType) -> ();
+  clearUserPreferences: (userId: text) -> ();
+  dropFileReference: (path: text) -> ();
+  getAllChartTimeframes: () -> (vec text) query;
+  getAllConversionRates: () -> (vec ConversionRate) query;
+  getAllMetricTypes: () -> (vec text) query;
+  getChartData: (timeframe: ChartTimeframe) -> (vec ChartDataPoint) query;
+  getConversionRate: (date: text) -> (opt ConversionRate) query;
+  getDefaultLogoPath: () -> (text) query;
+  getFileReference: (path: text) -> (FileReference) query;
+  getHistoricalData: (metricType: MetricType) -> (vec MetricDataPoint) query;
+  getLastUpdated: () -> (Time) query;
+  getUserPreferences: (userId: text) -> (opt UserPreferences) query;
+  listFileReferences: () -> (vec FileReference) query;
+  registerFileReference: (path: text, hash: text) -> ();
+  setDefaultLogoPath: (path: text) -> ();
+  setUserPreferences: (userId: text, dayMode: bool, customAppName: opt text,
+   customLogoPath: opt text) -> ();
+  storeChartData: (timeframe: ChartTimeframe, data: vec ChartDataPoint) -> ();
+  storeConversionRate: (date: text, rate: float64) -> ();
+  storeMetricData: (metricType: MetricType, value: float64) -> ();
+}

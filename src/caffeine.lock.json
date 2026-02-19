@@ -1,0 +1,14 @@
+{
+  "templates": {
+    "declaration_generator": "blob-10",
+    "build_template": "1.0.0"
+  },
+  "components": {
+    "blob-storage": "v1.1.2",
+    "qr-code": "v1.0.0",
+    "camera": "v1.0.0",
+    "http-outcalls": "v1.1.1"
+  },
+  "aiCoreVersion": "0.5.2",
+  "motokoVersion": "0.16.3-caffeine-4"
+}
