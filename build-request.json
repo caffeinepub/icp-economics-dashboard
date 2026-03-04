@@ -1,0 +1,123 @@
+{
+  "kind": "build_request",
+  "title": "Build professional crypto trading chart with timeframe selector and metric historical charts",
+  "projectName": "Crypto Trading Dashboard",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement professional candlestick chart using real trading data from CoinGecko API with proper OHLC (Open, High, Low, Close) values for each candle",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-17"
+        ],
+        "quotes": [
+          "Real trading data",
+          "make it looking like a professional trading chart with focus on the correct timeline and candle bar"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Candlestick chart displays real OHLC data from CoinGecko API",
+        "Each candle correctly represents the time period selected",
+        "Green candles show price increase (close > open), red candles show price decrease",
+        "Candle wicks accurately display high and low values"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add timeframe selector with options: 15m, 1h, 4h, 8h, 1w, 1m, 1y that updates the candlestick chart data accordingly",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-19"
+        ],
+        "quotes": [
+          "Real trading data, 15m, 1h, 4h, 8h, 1w, 1m, 1y"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Timeframe selector displays all seven options: 15m, 1h, 4h, 8h, 1w, 1m, 1y",
+        "Clicking a timeframe fetches and displays corresponding candlestick data",
+        "Active timeframe is visually highlighted",
+        "Chart updates smoothly when switching timeframes"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add toggle switches to all metric cards (volume, market cap, price changes, etc.) that show/hide historical chart below each metric value",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-19",
+          "msg-21"
+        ],
+        "quotes": [
+          "All metrics should have an optional switch to show the graph below the current value data"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each metric card displays a toggle switch or button",
+        "When toggled on, a historical line or area chart appears below the metric value",
+        "Historical chart shows data relevant to that specific metric over time",
+        "Toggle state is visually clear (on/off)",
+        "Charts animate smoothly when toggled"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Fetch and cache historical data for each metric from backend to support the metric historical charts",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-19",
+          "msg-21"
+        ],
+        "quotes": [
+          "All metrics should have an optional switch to show the graph below the current value data"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores or fetches historical data for volume, market cap, and price changes",
+        "Frontend queries historical data for each metric when toggle is activated",
+        "Data is cached to avoid redundant API calls",
+        "Historical data covers appropriate time range for visualization"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Style the main candlestick chart with professional trading UI aesthetics including proper grid lines, axis labels, and timeline markers",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-17"
+        ],
+        "quotes": [
+          "make it looking like a professional trading chart with focus on the correct timeline"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Chart has clearly visible X-axis with time labels formatted appropriately for each timeframe",
+        "Y-axis shows price levels with proper formatting",
+        "Grid lines are subtle but visible for easy price reading",
+        "Chart area has professional color scheme matching trading platforms",
+        "Tooltip on hover shows detailed OHLC data and timestamp"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use CoinGecko or similar public crypto API for real trading data",
+    "Preserve existing backend Motoko actor architecture",
+    "Do not modify immutable frontend paths: useInternetIdentity.ts, useActor.ts, main.tsx, components/ui"
+  ],
+  "nonGoals": [
+    "Trading functionality (buy/sell orders)",
+    "Multiple cryptocurrency support beyond ICP",
+    "User portfolio tracking",
+    "Price alerts or notifications"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

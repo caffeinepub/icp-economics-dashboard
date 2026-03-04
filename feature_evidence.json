@@ -1,0 +1,119 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-professional-candlestick-chart-using-real-trading-data-from-coingecko-api-with-proper-ohlc-open-high-low-close-values-for-each-candle",
+      "featureTitle": "Implement professional candlestick chart using real trading data from CoinGecko API with proper OHLC (Open, High, Low, Close) values for each candle",
+      "files": [
+        "frontend/src/components/ICPPriceChart.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "blob-storage@1.1.2",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "http-outcalls@1.1.1",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-timeframe-selector-with-options-15m-1h-4h-8h-1w-1m-1y-that-updates-the-candlestick-chart-data-accordingly",
+      "featureTitle": "Add timeframe selector with options: 15m, 1h, 4h, 8h, 1w, 1m, 1y that updates the candlestick chart data accordingly",
+      "files": [
+        "frontend/src/components/ICPPriceChart.tsx"
+      ],
+      "components": [
+        "blob-storage@1.1.2",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "http-outcalls@1.1.1",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-toggle-switches-to-all-metric-cards-volume-market-cap-price-changes-etc-that-show-hide-historical-chart-below-each-metric-value",
+      "featureTitle": "Add toggle switches to all metric cards (volume, market cap, price changes, etc.) that show/hide historical chart below each metric value",
+      "files": [
+        "frontend/src/components/MetricCard.tsx",
+        "frontend/src/components/MetricChart.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "blob-storage@1.1.2",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "http-outcalls@1.1.1",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fetch-and-cache-historical-data-for-each-metric-from-backend-to-support-the-metric-historical-charts",
+      "featureTitle": "Fetch and cache historical data for each metric from backend to support the metric historical charts",
+      "files": [
+        "frontend/src/components/MetricCard.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "blob-storage@1.1.2",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "http-outcalls@1.1.1",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-style-the-main-candlestick-chart-with-professional-trading-ui-aesthetics-including-proper-grid-lines-axis-labels-and-timeline-markers",
+      "featureTitle": "Style the main candlestick chart with professional trading UI aesthetics including proper grid lines, axis labels, and timeline markers",
+      "files": [
+        "frontend/src/components/ICPPriceChart.tsx"
+      ],
+      "components": [
+        "blob-storage@1.1.2",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "http-outcalls@1.1.1",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Professional crypto trading chart application with real-time candlestick charts, multiple timeframes (15m, 1h, 4h, 8h, 1w, 1m, 1y), and trading metrics with optional historical chart views",
+  "architectural_notes": [
+    "Frontend: React + TypeScript with Tailwind CSS",
+    "Backend: Motoko canisters on Internet Computer",
+    "Data source: Real crypto trading data from public API",
+    "Timeframes supported: 15m, 1h, 4h, 8h, 1w, 1m, 1y"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-implement-professional-candlestick-chart-using-real-trading-data-from-coingecko-api-with-proper-ohlc-open-high-low-close-values-for-each-candle",
+      "title": "Implement professional candlestick chart using real trading data from CoinGecko API with proper OHLC (Open, High, Low, Close) values for each candle",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-timeframe-selector-with-options-15m-1h-4h-8h-1w-1m-1y-that-updates-the-candlestick-chart-data-accordingly",
+      "title": "Add timeframe selector with options: 15m, 1h, 4h, 8h, 1w, 1m, 1y that updates the candlestick chart data accordingly",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-toggle-switches-to-all-metric-cards-volume-market-cap-price-changes-etc-that-show-hide-historical-chart-below-each-metric-value",
+      "title": "Add toggle switches to all metric cards (volume, market cap, price changes, etc.) that show/hide historical chart below each metric value",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fetch-and-cache-historical-data-for-each-metric-from-backend-to-support-the-metric-historical-charts",
+      "title": "Fetch and cache historical data for each metric from backend to support the metric historical charts",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-style-the-main-candlestick-chart-with-professional-trading-ui-aesthetics-including-proper-grid-lines-axis-labels-and-timeline-markers",
+      "title": "Style the main candlestick chart with professional trading UI aesthetics including proper grid lines, axis labels, and timeline markers",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Professional candlestick chart with real trading data and timeframe selector",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Trading metrics cards with toggle switches to show/hide historical charts",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Crypto Trading Dashboard",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

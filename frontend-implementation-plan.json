@@ -1,0 +1,119 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Professional Crypto Trading Chart with Timeframe Selector and Metric Historical Charts",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement professional candlestick chart using real CoinGecko OHLC data",
+      "acceptanceCriteria": [
+        "Candlestick chart displays real OHLC data from CoinGecko API",
+        "Each candle correctly represents the time period selected",
+        "Green candles show price increase (close > open), red candles show price decrease",
+        "Candle wicks accurately display high and low values"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ICPPriceChart.tsx",
+          "operation": "modify",
+          "description": "Refactor chart to display proper candlestick visualization with OHLC data instead of line chart. Replace Recharts LineChart with ComposedChart containing candlestick custom shapes. Implement green/red coloring based on close vs open values. Add wick rendering for high/low values. Update data structure to handle OHLC values from ChartDataPoint interface (already includes open, high, low, close fields from backend). Ensure each candle accurately represents the selected timeframe period."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Update fetchChartDataFromCoinGecko and related query hooks to properly map CoinGecko API responses to the ChartDataPoint structure with OHLC values. Ensure the backend method fetchChartDataWithFallback is called with the selected timeframe and that the response properly populates open, high, low, close, volume, and timestamp fields for each data point."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add timeframe selector with options: 15m, 1h, 4h, 8h, 1w, 1m, 1y",
+      "acceptanceCriteria": [
+        "Timeframe selector displays all seven options: 15m, 1h, 4h, 8h, 1w, 1m, 1y",
+        "Clicking a timeframe fetches and displays corresponding candlestick data",
+        "Active timeframe is visually highlighted",
+        "Chart updates smoothly when switching timeframes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ICPPriceChart.tsx",
+          "operation": "modify",
+          "description": "Add timeframe selector UI component above the chart with buttons/tabs for 15m, 1h, 4h, 8h, 1w, 1m, 1y options. Map these display labels to the existing ChartTimeframe enum values (fifteenMinutes, oneHour, fourHours, eightHours, sevenDays as proxy for 1w, oneMonth, oneYear). Implement state management for selected timeframe with visual highlighting of the active button. Trigger chart data refetch when timeframe changes by updating the query parameter. Add smooth transition animations when switching between timeframes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add toggle switches to metric cards that show/hide historical chart below each metric value",
+      "acceptanceCriteria": [
+        "Each metric card displays a toggle switch or button",
+        "When toggled on, a historical line or area chart appears below the metric value",
+        "Historical chart shows data relevant to that specific metric over time",
+        "Toggle state is visually clear (on/off)",
+        "Charts animate smoothly when toggled"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MetricCard.tsx",
+          "operation": "modify",
+          "description": "Add toggle switch/button at the top or bottom of each metric card. Implement local state to track toggle on/off status. When toggled on, render a collapsible section below the metric value containing a small line or area chart showing historical data for that specific metric. Use smooth expand/collapse animations with CSS transitions or Framer Motion. Add visual indicator (icon or color change) to show toggle state clearly. Pass metric type/ID to the card component to enable metric-specific historical data fetching."
+        },
+        {
+          "path": "frontend/src/components/MetricChart.tsx",
+          "operation": "create",
+          "description": "Create a reusable MetricChart component that renders a compact line or area chart for individual metric historical data. Accept props for metric type, data array, and styling options. Use Recharts with ResponsiveContainer, AreaChart or LineChart, and simple axis configuration. Style chart to fit compactly within metric card with minimal padding. Include loading skeleton and error state handling. Keep chart minimal and focused on trend visualization without excessive labels."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add new React Query hook useMetricHistoricalData that accepts a MetricType parameter and calls the backend method getHistoricalData(metricType). Return the historical data as MetricDataPoint array with timestamp and value fields. Configure query to only execute when metric type is provided (enabled based on toggle state). Add appropriate staleTime and caching strategy to avoid redundant API calls when toggling charts on/off repeatedly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Fetch and cache historical data for each metric from backend",
+      "acceptanceCriteria": [
+        "Backend stores or fetches historical data for volume, market cap, and price changes",
+        "Frontend queries historical data for each metric when toggle is activated",
+        "Data is cached to avoid redundant API calls",
+        "Historical data covers appropriate time range for visualization"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Ensure the useMetricHistoricalData hook (added in REQ-3) properly integrates with React Query caching. Configure appropriate staleTime (e.g., 5 minutes) and cacheTime to persist historical data in memory. Set enabled option to only fetch when metric type is provided and toggle is active. Handle loading and error states to provide feedback during data fetching. Map MetricType enum values correctly to backend interface."
+        },
+        {
+          "path": "frontend/src/components/MetricCard.tsx",
+          "operation": "modify",
+          "description": "Integrate useMetricHistoricalData hook to fetch historical data when toggle is activated. Pass the metric type/ID to the hook. Only trigger data fetch when toggle state changes to 'on'. Display loading spinner or skeleton while historical data is being fetched. Handle error states gracefully with error message display. Pass fetched historical data to MetricChart component for rendering."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Style the main candlestick chart with professional trading UI aesthetics",
+      "acceptanceCriteria": [
+        "Chart has clearly visible X-axis with time labels formatted appropriately for each timeframe",
+        "Y-axis shows price levels with proper formatting",
+        "Grid lines are subtle but visible for easy price reading",
+        "Chart area has professional color scheme matching trading platforms",
+        "Tooltip on hover shows detailed OHLC data and timestamp"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ICPPriceChart.tsx",
+          "operation": "modify",
+          "description": "Apply professional trading chart styling using Recharts customization options. Configure X-axis with dynamic time formatting based on selected timeframe (e.g., HH:mm for 15m/1h, MMM DD for 1w/1m, YYYY for 1y). Style Y-axis with proper price formatting (2 decimal places, currency symbol). Add subtle horizontal grid lines with low opacity for price reference. Implement custom tooltip that displays all OHLC values, volume, and formatted timestamp on hover. Use dark theme colors matching trading platforms (dark background, green for bullish, red for bearish). Add proper padding and margins for professional appearance."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add CSS variables for trading chart colors including candlestick green (bullish), candlestick red (bearish), grid line colors, and chart background. Define professional chart styling classes for consistent appearance across timeframes. Add tooltip styling for clean, readable OHLC data display. Ensure chart elements have proper contrast and visibility in both light and dark modes."
+        }
+      ]
+    }
+  ]
+}
